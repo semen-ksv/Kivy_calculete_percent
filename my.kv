@@ -1,0 +1,212 @@
+
+<Container>
+
+    rows: 4
+    padding: 10
+    muns_input: muns_input
+    year_percent_input: year_percent_input
+    start_input: start_input
+    add_input: add_input
+
+    final_deposit: final_deposit
+    get_percents: get_percents
+    all_add_sum: all_add_sum
+    tax: tax
+    net_profit: net_profit
+
+    AnchorLayout:
+        andhor_y: 'top'
+        size_hint: 1, 0.2
+
+        MDLabel:
+            text: "Подщет сложных процентов"
+            font_size: 30
+            halign: "center"
+            text_color: 0, 0, 100, 1
+            theme_text_color: "Custom"
+
+
+    AnchorLayout:
+
+        GridLayout:
+            rows: 2
+            cols: 2
+
+
+            BoxLayout:
+                padding: '10sp'
+                orientation: 'horizontal'
+                MDLabel:
+                    text: u'Количество месяцев'
+                    halign: 'left'
+                    valing: 'top'
+                    text_size: self.size
+                    ont_size: 20
+
+                MDTextField:
+
+                    id: muns_input
+                    size_hint: 0.7, 0.5
+                    multiline: False
+
+                    font_size: 20
+                    multiline: False
+                    input_type: 'number'
+                    input_filter: 'float'
+
+
+            BoxLayout:
+                padding: '10sp'
+                orientation: 'horizontal'
+                MDLabel:
+                    text: u'Годовой процент'
+                    halign: 'left'
+                    valing: 'center'
+                    text_size: self.size
+                    ont_size: 20
+
+                MDTextField:
+
+                    id: year_percent_input
+                    size_hint: 0.7, 0.5
+                    multiline: False
+                    font_size: 20
+                    multiline: False
+                    input_type: 'number'
+                    input_filter: 'float'
+
+            BoxLayout:
+                padding: '10sp'
+                orientation: 'horizontal'
+
+                MDLabel:
+                    text: u'Стартовый взнос'
+                    halign: 'left'
+                    valing: 'center'
+                    text_size: self.size
+                    ont_size: 20
+
+                MDTextField:
+
+                    id: start_input
+                    size_hint: 0.7, 0.5
+                    multiline: False
+                    font_size: 20
+                    multiline: False
+                    input_type: 'number'
+                    input_filter: 'float'
+
+            BoxLayout:
+                padding: '10sp'
+                orientation: 'horizontal'
+                MDLabel:
+                    text: u'Месячный взнос'
+                    halign: 'left'
+                    valing: 'center'
+                    text_size: self.size
+                    ont_size: 20
+
+                MDTextField:
+
+                    id: add_input
+                    size_hint: 0.7, 0.5
+                    multiline: False
+                    font_size: 20
+                    multiline: False
+                    input_type: 'number'
+                    input_filter: 'float'
+
+
+    GridLayout:
+        cols: 2
+        size_hint: 1.4, 1
+        BoxLayout:
+            padding: '10sp'
+            orientation: 'vertical'
+            MDLabel:
+                text: u'Финальный депозит'
+                font_size: 25
+                halign: 'left'
+                valing: 'middle'
+                text_size: self.size
+            MDLabel:
+                text: u'Проценты'
+                font_size: 25
+                halign: 'left'
+                valing: 'middle'
+                text_size: self.size
+            MDLabel:
+                text: 'Внесенная сума'
+                font_size: 25
+                halign: 'left'
+                valing: 'middle'
+                text_size: self.size
+
+            MDLabel:
+                text: 'Cумма налогов'
+                font_size: 25
+                halign: 'left'
+                valing: 'middle'
+                text_size: self.size
+
+            MDLabel:
+                text: 'Чистая прибыль'
+                font_size: 25
+                halign: 'left'
+                valing: 'middle'
+                text_size: self.size
+
+        BoxLayout:
+            size_hint: 0.6, 1
+            orientation: 'vertical'
+            MDLabel:
+                text: '0'
+                id: final_deposit
+                font_size: 30
+                halign: 'left'
+                valing: 'middle'
+                text_size: self.size
+            MDLabel:
+                text: '0'
+                id: get_percents
+                font_size: 30
+                halign: 'left'
+                valing: 'middle'
+                text_size: self.size
+            MDLabel:
+                text: '0'
+                id: all_add_sum
+                font_size: 30
+                halign: 'left'
+                valing: 'middle'
+                text_size: self.size
+            MDLabel:
+                text: '0'
+                id: tax
+                font_size: 30
+                halign: 'left'
+                valing: 'middle'
+                text_size: self.size
+            MDLabel:
+                text: '0'
+                id: net_profit
+                font_size: 30
+                halign: 'left'
+                valing: 'middle'
+                text_size: self.size
+
+
+
+    BoxLayout:
+        size_hint: 0.9, 0.7
+        padding: [30, 0, 30, 20]
+
+        MDRoundFlatButton:
+            text: u'Подсчитать '
+            size_hint: 0.5, 0.4
+
+            font_size: 30
+
+            on_release:
+                root.calculation()
+
