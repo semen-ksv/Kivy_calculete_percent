@@ -1,6 +1,7 @@
 from kivymd.uix.gridlayout import MDGridLayout
 from kivy.config import Config
 from kivymd.app import MDApp
+from kivy.lang import Builder
 
 Config.set('kivy', 'keyboard_mode', 'systemanddock')
 
@@ -64,7 +65,8 @@ class Container(MDGridLayout):
 
         build_graph(calc.get('muns_list'), calc.get('sum_list'))
         image = "culc_graph.png"
-        self.graph_img.reload()
+        self.graph_img.source = image
+        # self.graph_img.reload()
 
 
 
@@ -72,6 +74,8 @@ class MyApp(MDApp):
 
     def build(self):
         self.theme_cls.theme_style = 'Light'
+        # with open("my.kv", encoding='utf8') as f:
+        #     drunk = Builder.load_string(f.read())
         return Container()
 
 

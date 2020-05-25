@@ -1,4 +1,3 @@
-
 <Container>
 
     rows: 4
@@ -21,7 +20,7 @@
 
         MDLabel:
             text: "Подщет сложных процентов"
-            font_size: 30
+            font_size: 50
             halign: "center"
             text_color: 0, 0, 100, 1
             theme_text_color: "Custom"
@@ -42,7 +41,7 @@
                     halign: 'left'
                     valing: 'top'
                     text_size: self.size
-                    ont_size: 20
+                    font_size: 30
 
                 MDTextField:
 
@@ -50,7 +49,7 @@
                     size_hint: 0.7, 0.5
                     multiline: False
 
-                    font_size: 20
+                    font_size: 30
                     multiline: False
                     input_type: 'number'
                     input_filter: 'float'
@@ -64,14 +63,14 @@
                     halign: 'left'
                     valing: 'center'
                     text_size: self.size
-                    ont_size: 20
+                    font_size: 30
 
                 MDTextField:
 
                     id: year_percent_input
                     size_hint: 0.7, 0.5
                     multiline: False
-                    font_size: 20
+                    font_size: 30
                     multiline: False
                     input_type: 'number'
                     input_filter: 'float'
@@ -85,14 +84,14 @@
                     halign: 'left'
                     valing: 'center'
                     text_size: self.size
-                    ont_size: 20
+                    font_size: 30
 
                 MDTextField:
 
                     id: start_input
                     size_hint: 0.7, 0.5
                     multiline: False
-                    font_size: 20
+                    font_size: 30
                     multiline: False
                     input_type: 'number'
                     input_filter: 'float'
@@ -105,14 +104,14 @@
                     halign: 'left'
                     valing: 'center'
                     text_size: self.size
-                    ont_size: 20
+                    font_size: 30
 
                 MDTextField:
 
                     id: add_input
                     size_hint: 0.7, 0.5
                     multiline: False
-                    font_size: 20
+                    font_size: 30
                     multiline: False
                     input_type: 'number'
                     input_filter: 'float'
@@ -120,39 +119,39 @@
 
     GridLayout:
         cols: 2
-        size_hint: 1.4, 1
+
         BoxLayout:
             padding: '10sp'
             orientation: 'vertical'
             MDLabel:
                 text: u'Финальный депозит'
-                font_size: 25
+                font_size: 35
                 halign: 'left'
                 valing: 'middle'
                 text_size: self.size
             MDLabel:
                 text: u'Проценты'
-                font_size: 25
+                font_size: 35
                 halign: 'left'
                 valing: 'middle'
                 text_size: self.size
             MDLabel:
                 text: 'Внесенная сума'
-                font_size: 25
+                font_size: 35
                 halign: 'left'
                 valing: 'middle'
                 text_size: self.size
 
             MDLabel:
                 text: 'Cумма налогов'
-                font_size: 25
+                font_size: 35
                 halign: 'left'
                 valing: 'middle'
                 text_size: self.size
 
             MDLabel:
                 text: 'Чистая прибыль'
-                font_size: 25
+                font_size: 35
                 halign: 'left'
                 valing: 'middle'
                 text_size: self.size
@@ -160,6 +159,7 @@
         BoxLayout:
             size_hint: 0.6, 1
             orientation: 'vertical'
+            padding: '10sp'
             MDLabel:
                 text: '0'
                 id: final_deposit
@@ -198,7 +198,7 @@
 
             Image:
                 id: graph_img
-                source: "culc_graph.png"
+                source: None
                 size: self.texture_size
 
 
