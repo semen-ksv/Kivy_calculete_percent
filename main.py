@@ -3,6 +3,7 @@ from kivy.config import Config
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
+
 from kivy.core.window import Window
 
 Window.size = (560, 910)
@@ -40,8 +41,8 @@ def calculation_percents(months, start_deposit, percent, monthly_refill):
 
 def build_graph(muns_list, sum_list):
     plt.bar(muns_list, sum_list)
-    plt.xlabel('Months invest')
-    plt.ylabel('Raising capital')
+    plt.xlabel('Месяци инвистирования')
+    plt.ylabel('Сумма депозита')
     plt.savefig('culc_graph.png')
 
 
@@ -72,25 +73,19 @@ class MainWindow(Screen):
         self.net_profit.text = calc.get('net_profit')
 
         build_graph(calc.get('muns_list'), calc.get('sum_list'))
-        image = "culc_graph.png"
-        self.graph_img.source = image
+
         # self.graph_img.reload()
 
 class InfoWindow(Screen):
     pass
 
-
 class GraphWindow(Screen):
-    @staticmethod
-    def show_graph():
-        pass
-
+    pass
+    # image = "culc_graph.png"
+    # graph_img.source = image
 
 class WindowManager(ScreenManager):
     pass
-
-
-# class Container(MDGridLayout):
 
 
 

@@ -9,35 +9,45 @@ WindowManager:
 
     MDGridLayout:
         rows: 3
-        padding: "50sp"
+        padding: "20sp"
 
-        MDRoundFlatButton:
-            text: u'Подщет сложных процентов'
-            size_hint: 0.3, 0.2
+        BoxLayout:
 
-            font_size: 30
+            padding: [30, 0, 30, 20]
 
-            on_release:
-                app.root.current = 'main'
+            MDRoundFlatButton:
+                text: u'Подщет сложных процентов'
+                size_hint: 0.4, 0.5
 
+                font_size: 30
 
-        MDRoundFlatButton:
-            text: u'Полезная Информация'
-            size_hint: 0.3, 0.2
+                on_release:
+                    app.root.current = 'main'
 
-            font_size: 30
+        BoxLayout:
+            size_hint: 0.9, 0.7
+            padding: [30, 0, 30, 20]
+            MDRoundFlatButton:
+                text: u'Полезная Информация'
+                size_hint: 0.4, 0.5
 
-            on_release:
-                app.root.current = 'info'
+                font_size: 30
 
+                on_release:
+                    app.root.current = 'info'
 
-        MDRoundFlatButton:
-            text: u'ВЫХОД'
-            size_hint: 0.3, 0.2
+        BoxLayout:
+            size_hint: 0.9, 0.7
 
-            font_size: 30
+            MDRoundFlatButton:
+                text: u'ВЫХОД'
+                text_color: 50, 0, 100, 1
+                theme_text_color: "Custom"
+                size_hint: 0.4, 0.5
 
-            on_press: app.stop()
+                font_size: 30
+
+                on_press: app.stop()
 
 
 
@@ -54,7 +64,7 @@ WindowManager:
     all_add_sum: all_add_sum
     tax: tax
     net_profit: net_profit
-    graph_img: graph_img
+
 
     MDGridLayout:
         rows: 4
@@ -242,10 +252,6 @@ WindowManager:
                     valing: 'middle'
                     text_size: self.size
 
-                Image:
-                    id: graph_img
-                    source: None
-                    size: self.texture_size
 
 
 
@@ -254,13 +260,22 @@ WindowManager:
             padding: [30, 0, 30, 20]
 
             MDRoundFlatButton:
-                text: u'Подсчитать '
+                text: u'Подсчитать'
                 size_hint: 0.5, 0.4
 
                 font_size: 30
 
                 on_release:
                     root.calculation()
+
+            MDRoundFlatButton:
+                text: u'График'
+                size_hint: 0.5, 0.4
+
+                font_size: 30
+
+                on_release:
+                    app.root.current = 'graph_window'
 
 <InfoWindow>
     name: "info"
@@ -273,3 +288,27 @@ WindowManager:
 
 <GraphWindow>
     name: "graph_window"
+
+    graph_img: graph_img
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '20ps'
+        Image:
+            id: graph_img
+            source: "culc_graph.png"
+            size: self.texture_size
+
+        BoxLayout:
+            size_hint: 0.9, 0.7
+            padding: [30, 0, 30, 20]
+
+
+
+            MDRoundFlatButton:
+                text: u'Закрыть'
+                size_hint: 1, 0.2
+
+                font_size: 30
+
+                on_release:
+                    app.root.current = 'main'
