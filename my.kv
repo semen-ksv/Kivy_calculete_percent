@@ -13,6 +13,7 @@
     all_add_sum: all_add_sum
     tax: tax
     net_profit: net_profit
+    graph_img: graph_img
 
     AnchorLayout:
         andhor_y: 'top'
@@ -194,6 +195,11 @@
                 halign: 'left'
                 valing: 'middle'
                 text_size: self.size
+
+            Image:
+                id: graph_img
+                source: "culc_graph.png"
+                size: self.texture_size
 
 
 
