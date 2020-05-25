@@ -2,7 +2,10 @@ from kivymd.uix.gridlayout import MDGridLayout
 from kivy.config import Config
 from kivymd.app import MDApp
 from kivy.lang import Builder
+from kivy.uix.screenmanager import Screen, ScreenManager
+from kivy.core.window import Window
 
+Window.size = (560, 910)
 Config.set('kivy', 'keyboard_mode', 'systemanddock')
 
 import matplotlib.pyplot as plt
@@ -42,7 +45,12 @@ def build_graph(muns_list, sum_list):
     plt.savefig('culc_graph.png')
 
 
-class Container(MDGridLayout):
+
+
+class StartWindow(Screen):
+    pass
+
+class MainWindow(Screen):
     def calculation(self):
         try:
             months = int(self.muns_input.text)
@@ -68,15 +76,32 @@ class Container(MDGridLayout):
         self.graph_img.source = image
         # self.graph_img.reload()
 
+class InfoWindow(Screen):
+    pass
+
+
+class GraphWindow(Screen):
+    @staticmethod
+    def show_graph():
+        pass
+
+
+class WindowManager(ScreenManager):
+    pass
+
+
+# class Container(MDGridLayout):
+
+
 
 
 class MyApp(MDApp):
 
     def build(self):
         self.theme_cls.theme_style = 'Light'
-        # with open("my.kv", encoding='utf8') as f:
-        #     drunk = Builder.load_string(f.read())
-        return Container()
+        with open("my.kv") as f:
+            kv_file = Builder.load_string(f.read())
+        return kv_file
 
 
 app = MyApp()

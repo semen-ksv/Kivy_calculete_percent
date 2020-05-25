@@ -1,7 +1,49 @@
-<Container>
+WindowManager:
+    StartWindow:
+    MainWindow:
+    InfoWindow:
+    GraphWindow:
 
-    rows: 4
-    padding: 10
+<StartWindow>
+    name: "start"
+
+    MDGridLayout:
+        rows: 3
+        padding: "50sp"
+
+        MDRoundFlatButton:
+            text: u'Подщет сложных процентов'
+            size_hint: 0.3, 0.2
+
+            font_size: 30
+
+            on_release:
+                app.root.current = 'main'
+
+
+        MDRoundFlatButton:
+            text: u'Полезная Информация'
+            size_hint: 0.3, 0.2
+
+            font_size: 30
+
+            on_release:
+                app.root.current = 'info'
+
+
+        MDRoundFlatButton:
+            text: u'ВЫХОД'
+            size_hint: 0.3, 0.2
+
+            font_size: 30
+
+            on_press: app.stop()
+
+
+
+<MainWindow>
+    name:   "main"
+
     muns_input: muns_input
     year_percent_input: year_percent_input
     start_input: start_input
@@ -14,205 +56,220 @@
     net_profit: net_profit
     graph_img: graph_img
 
-    AnchorLayout:
-        andhor_y: 'top'
-        size_hint: 1, 0.2
+    MDGridLayout:
+        rows: 4
+        padding: 10
 
-        MDLabel:
-            text: "Подщет сложных процентов"
-            font_size: 50
-            halign: "center"
-            text_color: 0, 0, 100, 1
-            theme_text_color: "Custom"
+        AnchorLayout:
+            andhor_y: 'top'
+            size_hint: 1, 0.2
+
+            MDLabel:
+                text: "Подщет сложных процентов"
+                font_size: 50
+                halign: "center"
+                text_color: 0, 0, 100, 1
+                theme_text_color: "Custom"
 
 
-    AnchorLayout:
+        AnchorLayout:
+
+            MDGridLayout:
+                rows: 2
+                cols: 2
+
+
+                BoxLayout:
+                    padding: '10sp'
+                    orientation: 'horizontal'
+                    MDLabel:
+                        text: u'Количество месяцев'
+                        halign: 'left'
+                        valing: 'top'
+                        text_size: self.size
+                        font_size: 30
+
+                    MDTextField:
+
+                        id: muns_input
+                        size_hint: 0.7, 0.5
+                        multiline: False
+
+                        font_size: 30
+                        multiline: False
+                        input_type: 'number'
+                        input_filter: 'float'
+
+
+                BoxLayout:
+                    padding: '10sp'
+                    orientation: 'horizontal'
+                    MDLabel:
+                        text: u'Годовой процент'
+                        halign: 'left'
+                        valing: 'center'
+                        text_size: self.size
+                        font_size: 30
+
+                    MDTextField:
+
+                        id: year_percent_input
+                        size_hint: 0.7, 0.5
+                        multiline: False
+                        font_size: 30
+                        multiline: False
+                        input_type: 'number'
+                        input_filter: 'float'
+
+                BoxLayout:
+                    padding: '10sp'
+                    orientation: 'horizontal'
+
+                    MDLabel:
+                        text: u'Стартовый взнос'
+                        halign: 'left'
+                        valing: 'center'
+                        text_size: self.size
+                        font_size: 30
+
+                    MDTextField:
+
+                        id: start_input
+                        size_hint: 0.7, 0.5
+                        multiline: False
+                        font_size: 30
+                        multiline: False
+                        input_type: 'number'
+                        input_filter: 'float'
+
+                BoxLayout:
+                    padding: '10sp'
+                    orientation: 'horizontal'
+                    MDLabel:
+                        text: u'Месячный взнос'
+                        halign: 'left'
+                        valing: 'center'
+                        text_size: self.size
+                        font_size: 30
+
+                    MDTextField:
+
+                        id: add_input
+                        size_hint: 0.7, 0.5
+                        multiline: False
+                        font_size: 30
+                        multiline: False
+                        input_type: 'number'
+                        input_filter: 'float'
+
 
         GridLayout:
-            rows: 2
             cols: 2
 
-
             BoxLayout:
                 padding: '10sp'
-                orientation: 'horizontal'
+                orientation: 'vertical'
                 MDLabel:
-                    text: u'Количество месяцев'
+                    text: u'Финальный депозит'
+                    font_size: 35
                     halign: 'left'
-                    valing: 'top'
+                    valing: 'middle'
                     text_size: self.size
-                    font_size: 30
+                MDLabel:
+                    text: u'Проценты'
+                    font_size: 35
+                    halign: 'left'
+                    valing: 'middle'
+                    text_size: self.size
+                MDLabel:
+                    text: 'Внесенная сума'
+                    font_size: 35
+                    halign: 'left'
+                    valing: 'middle'
+                    text_size: self.size
 
-                MDTextField:
+                MDLabel:
+                    text: 'Cумма налогов'
+                    font_size: 35
+                    halign: 'left'
+                    valing: 'middle'
+                    text_size: self.size
 
-                    id: muns_input
-                    size_hint: 0.7, 0.5
-                    multiline: False
-
-                    font_size: 30
-                    multiline: False
-                    input_type: 'number'
-                    input_filter: 'float'
-
+                MDLabel:
+                    text: 'Чистая прибыль'
+                    font_size: 35
+                    halign: 'left'
+                    valing: 'middle'
+                    text_size: self.size
 
             BoxLayout:
+                size_hint: 0.6, 1
+                orientation: 'vertical'
                 padding: '10sp'
-                orientation: 'horizontal'
                 MDLabel:
-                    text: u'Годовой процент'
+                    text: '0'
+                    id: final_deposit
+                    font_size: 30
                     halign: 'left'
-                    valing: 'center'
+                    valing: 'middle'
                     text_size: self.size
-                    font_size: 30
-
-                MDTextField:
-
-                    id: year_percent_input
-                    size_hint: 0.7, 0.5
-                    multiline: False
-                    font_size: 30
-                    multiline: False
-                    input_type: 'number'
-                    input_filter: 'float'
-
-            BoxLayout:
-                padding: '10sp'
-                orientation: 'horizontal'
-
                 MDLabel:
-                    text: u'Стартовый взнос'
+                    text: '0'
+                    id: get_percents
+                    font_size: 30
                     halign: 'left'
-                    valing: 'center'
+                    valing: 'middle'
                     text_size: self.size
-                    font_size: 30
-
-                MDTextField:
-
-                    id: start_input
-                    size_hint: 0.7, 0.5
-                    multiline: False
-                    font_size: 30
-                    multiline: False
-                    input_type: 'number'
-                    input_filter: 'float'
-
-            BoxLayout:
-                padding: '10sp'
-                orientation: 'horizontal'
                 MDLabel:
-                    text: u'Месячный взнос'
+                    text: '0'
+                    id: all_add_sum
+                    font_size: 30
                     halign: 'left'
-                    valing: 'center'
+                    valing: 'middle'
                     text_size: self.size
+                MDLabel:
+                    text: '0'
+                    id: tax
                     font_size: 30
-
-                MDTextField:
-
-                    id: add_input
-                    size_hint: 0.7, 0.5
-                    multiline: False
+                    halign: 'left'
+                    valing: 'middle'
+                    text_size: self.size
+                MDLabel:
+                    text: '0'
+                    id: net_profit
                     font_size: 30
-                    multiline: False
-                    input_type: 'number'
-                    input_filter: 'float'
+                    halign: 'left'
+                    valing: 'middle'
+                    text_size: self.size
+
+                Image:
+                    id: graph_img
+                    source: None
+                    size: self.texture_size
 
 
-    GridLayout:
-        cols: 2
 
         BoxLayout:
-            padding: '10sp'
-            orientation: 'vertical'
-            MDLabel:
-                text: u'Финальный депозит'
-                font_size: 35
-                halign: 'left'
-                valing: 'middle'
-                text_size: self.size
-            MDLabel:
-                text: u'Проценты'
-                font_size: 35
-                halign: 'left'
-                valing: 'middle'
-                text_size: self.size
-            MDLabel:
-                text: 'Внесенная сума'
-                font_size: 35
-                halign: 'left'
-                valing: 'middle'
-                text_size: self.size
+            size_hint: 0.9, 0.7
+            padding: [30, 0, 30, 20]
 
-            MDLabel:
-                text: 'Cумма налогов'
-                font_size: 35
-                halign: 'left'
-                valing: 'middle'
-                text_size: self.size
+            MDRoundFlatButton:
+                text: u'Подсчитать '
+                size_hint: 0.5, 0.4
 
-            MDLabel:
-                text: 'Чистая прибыль'
-                font_size: 35
-                halign: 'left'
-                valing: 'middle'
-                text_size: self.size
-
-        BoxLayout:
-            size_hint: 0.6, 1
-            orientation: 'vertical'
-            padding: '10sp'
-            MDLabel:
-                text: '0'
-                id: final_deposit
                 font_size: 30
-                halign: 'left'
-                valing: 'middle'
-                text_size: self.size
-            MDLabel:
-                text: '0'
-                id: get_percents
-                font_size: 30
-                halign: 'left'
-                valing: 'middle'
-                text_size: self.size
-            MDLabel:
-                text: '0'
-                id: all_add_sum
-                font_size: 30
-                halign: 'left'
-                valing: 'middle'
-                text_size: self.size
-            MDLabel:
-                text: '0'
-                id: tax
-                font_size: 30
-                halign: 'left'
-                valing: 'middle'
-                text_size: self.size
-            MDLabel:
-                text: '0'
-                id: net_profit
-                font_size: 30
-                halign: 'left'
-                valing: 'middle'
-                text_size: self.size
 
-            Image:
-                id: graph_img
-                source: None
-                size: self.texture_size
+                on_release:
+                    root.calculation()
 
+<InfoWindow>
+    name: "info"
+        #MDLabel:
+            #text: 'Некоторая полезная информация'
+            #font_size: 30
+            #halign: 'middle'
+            #valing: 'middle'
+            #text_size: self.size
 
-
-    BoxLayout:
-        size_hint: 0.9, 0.7
-        padding: [30, 0, 30, 20]
-
-        MDRoundFlatButton:
-            text: u'Подсчитать '
-            size_hint: 0.5, 0.4
-
-            font_size: 30
-
-            on_release:
-                root.calculation()
-
+<GraphWindow>
+    name: "graph_window"
