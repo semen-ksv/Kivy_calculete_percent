@@ -3,10 +3,10 @@ from kivy.config import Config
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
-
+from kivy.uix.image import Image
 from kivy.core.window import Window
 
-Window.size = (560, 910)
+# Window.size = (560, 910)
 Config.set('kivy', 'keyboard_mode', 'systemanddock')
 
 import matplotlib.pyplot as plt
@@ -25,8 +25,8 @@ def calculation_percents(months, start_deposit, percent, monthly_refill):
         print(add_sum)
 
     final_deposit = str(round(add_sum, 2))
-    get_percents = str(round((float(final_deposit) - start_deposit), 2))
-    all_add_sum = str(start_deposit)
+    all_add_sum = str(start_deposit+monthly_refill*months)
+    get_percents = str(round((float(final_deposit) - (float(all_add_sum))), 2))
     tax = str(round((float(get_percents) * 0.195), 2))
     net_profit = str(round((float(get_percents) - float(tax)), 2))
 
@@ -46,8 +46,6 @@ def build_graph(muns_list, sum_list):
     plt.savefig('culc_graph.png')
 
 
-
-
 class StartWindow(Screen):
     pass
 
@@ -57,7 +55,7 @@ class MainWindow(Screen):
             months = int(self.muns_input.text)
             start_deposit = float(self.start_input.text)
             percent = float(self.year_percent_input.text) / 100
-            monthly_refill = 1
+            monthly_refill = float(self.add_input.text)
         except:
             months = 1
             start_deposit = 1
@@ -73,21 +71,27 @@ class MainWindow(Screen):
         self.net_profit.text = calc.get('net_profit')
 
         build_graph(calc.get('muns_list'), calc.get('sum_list'))
+        # image = "culc_graph.png"
+        # GraphWindow().graph_img = Image(source=image)
 
-        # self.graph_img.reload()
+    def change_graph(self):
+        GraphWindow().reload_graph()
+
 
 class InfoWindow(Screen):
     pass
 
 class GraphWindow(Screen):
-    pass
-    # image = "culc_graph.png"
-    # graph_img.source = image
+    img_graph = "culc_graph.png"
+    def reload_graph(self):
+        # image = "culc_graph.png"
+        # self.graph_img = Image(sourse=image)
+        print(self.graph_img.source)
+        self.graph_img.reload()
+
 
 class WindowManager(ScreenManager):
     pass
-
-
 
 
 class MyApp(MDApp):

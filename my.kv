@@ -175,7 +175,7 @@ WindowManager:
 
         GridLayout:
             cols: 2
-
+            size_hint: 1.5, 1
             BoxLayout:
                 padding: '10sp'
                 orientation: 'vertical'
@@ -213,41 +213,40 @@ WindowManager:
                     text_size: self.size
 
             BoxLayout:
-                size_hint: 0.6, 1
+                size_hint: 0.5, 1
                 orientation: 'vertical'
                 padding: '10sp'
                 MDLabel:
-                    text: '0'
+                    text: ''
                     id: final_deposit
-                    font_size: 30
+                    font_size: 35
                     halign: 'left'
                     valing: 'middle'
                     text_size: self.size
                 MDLabel:
-                    text: '0'
                     id: get_percents
-                    font_size: 30
+                    text: ''
+                    font_size: 35
                     halign: 'left'
                     valing: 'middle'
                     text_size: self.size
                 MDLabel:
-                    text: '0'
+                    text: ''
                     id: all_add_sum
-                    font_size: 30
-                    halign: 'left'
-                    valing: 'middle'
+                    font_size: 35
+
                     text_size: self.size
                 MDLabel:
-                    text: '0'
+                    text: ''
                     id: tax
-                    font_size: 30
+                    font_size: 35
                     halign: 'left'
                     valing: 'middle'
                     text_size: self.size
                 MDLabel:
-                    text: '0'
+                    text: ''
                     id: net_profit
-                    font_size: 30
+                    font_size: 35
                     halign: 'left'
                     valing: 'middle'
                     text_size: self.size
@@ -267,24 +266,38 @@ WindowManager:
 
                 on_release:
                     root.calculation()
+                    root.change_graph()
 
             MDRoundFlatButton:
                 text: u'График'
-                size_hint: 0.5, 0.4
+                size_hint: 0.3, 0.4
 
                 font_size: 30
 
                 on_release:
+
                     app.root.current = 'graph_window'
 
 <InfoWindow>
     name: "info"
-        #MDLabel:
-            #text: 'Некоторая полезная информация'
-            #font_size: 30
-            #halign: 'middle'
-            #valing: 'middle'
-            #text_size: self.size
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '20ps'
+        MDLabel:
+            text: u'Некоторая полезная информация'
+            font_size: 50
+
+            text_size: self.size
+
+        MDRoundFlatButton:
+            text: u'ВЫХОД'
+            text_color: 50, 0, 100, 1
+            theme_text_color: "Custom"
+            size_hint: 0.9, 0.2
+
+            font_size: 30
+
+            on_press: app.root.current = 'start'
 
 <GraphWindow>
     name: "graph_window"
@@ -295,7 +308,7 @@ WindowManager:
         padding: '20ps'
         Image:
             id: graph_img
-            source: "culc_graph.png"
+            source: root.img_graph
             size: self.texture_size
 
         BoxLayout:
