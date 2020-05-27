@@ -1,10 +1,7 @@
-from kivymd.uix.gridlayout import MDGridLayout
 from kivy.config import Config
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
-from kivy.uix.image import Image
-from kivy.core.window import Window
 
 # Window.size = (560, 910)
 Config.set('kivy', 'keyboard_mode', 'systemanddock')
@@ -13,6 +10,14 @@ import matplotlib.pyplot as plt
 
 
 def calculation_percents(months, start_deposit, percent, monthly_refill):
+    """
+    Calculate compound interest from param
+    :param months: input by user number of months
+    :param start_deposit:input by user sum of start deposit
+    :param percent:input by user year deposit percent
+    :param monthly_refill:input by user monthly amount added
+    :return: dictionary with all calculation for showing in app
+    """
     sum_list = []
     muns_list = []
     add_sum = start_deposit
@@ -25,7 +30,7 @@ def calculation_percents(months, start_deposit, percent, monthly_refill):
         print(add_sum)
 
     final_deposit = str(round(add_sum, 2))
-    all_add_sum = str(start_deposit+monthly_refill*months)
+    all_add_sum = str(start_deposit + monthly_refill * months)
     get_percents = str(round((float(final_deposit) - (float(all_add_sum))), 2))
     tax = str(round((float(get_percents) * 0.195), 2))
     net_profit = str(round((float(get_percents) - float(tax)), 2))
@@ -40,6 +45,12 @@ def calculation_percents(months, start_deposit, percent, monthly_refill):
 
 
 def build_graph(muns_list, sum_list):
+    """
+    Build graph from input date
+    :param muns_list: returned list of number of month from calculation_percents
+    :param sum_list: returned list of monthly increased sum from calculation_percents
+    as result save graph in png file
+    """
     plt.bar(muns_list, sum_list)
     plt.xlabel('Месяци инвистирования')
     plt.ylabel('Сумма депозита')
@@ -47,10 +58,23 @@ def build_graph(muns_list, sum_list):
 
 
 class StartWindow(Screen):
+    """
+    Starting window in app
+    """
     pass
 
+
 class MainWindow(Screen):
+    """
+    Main window in app with input and output aria
+    """
+
     def calculation(self):
+        """
+        get input data from kv file and convert in number
+        then call calculation_percents and return result in main window
+        :return:
+        """
         try:
             months = int(self.muns_input.text)
             start_deposit = float(self.start_input.text)
@@ -75,14 +99,23 @@ class MainWindow(Screen):
         # GraphWindow().graph_img = Image(source=image)
 
     def change_graph(self):
+        """
+        reload graph image
+        """
         GraphWindow().reload_graph()
 
 
 class InfoWindow(Screen):
+    # TODO add some useful information
     pass
 
+
 class GraphWindow(Screen):
+    """
+    window with graph image
+    """
     img_graph = "culc_graph.png"
+
     def reload_graph(self):
         # image = "culc_graph.png"
         # self.graph_img = Image(sourse=image)
@@ -95,7 +128,9 @@ class WindowManager(ScreenManager):
 
 
 class MyApp(MDApp):
-
+    """
+    main class of working app
+    """
     def build(self):
         self.theme_cls.theme_style = 'Light'
         with open("my.kv") as f:
