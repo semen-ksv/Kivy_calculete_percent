@@ -4,14 +4,14 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
 
 # Window.size = (560, 910)
-Config.set('kivy', 'keyboard_mode', 'systemanddock')
+# Config.set('kivy', 'keyboard_mode', 'systemanddock')
 
 import matplotlib.pyplot as plt
 
 
-def calculation_percents(months, start_deposit, percent, monthly_refill):
+def calculation_percents(months: int, start_deposit: float, percent: float, monthly_refill: float):
     """
-    Calculate compound interest from param
+    Calculate compound interest from parameters:
     :param months: input by user number of months
     :param start_deposit:input by user sum of start deposit
     :param percent:input by user year deposit percent
@@ -44,7 +44,7 @@ def calculation_percents(months, start_deposit, percent, monthly_refill):
             "sum_list": sum_list}
 
 
-def build_graph(muns_list, sum_list):
+def build_graph(muns_list: list, sum_list: list):
     """
     Build graph from input date
     :param muns_list: returned list of number of month from calculation_percents
@@ -98,7 +98,8 @@ class MainWindow(Screen):
         # image = "culc_graph.png"
         # GraphWindow().graph_img = Image(source=image)
 
-    def change_graph(self):
+    @staticmethod
+    def change_graph():
         """
         reload graph image
         """
