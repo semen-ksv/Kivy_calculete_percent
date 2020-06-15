@@ -2,9 +2,10 @@ from kivy.config import Config
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
+from kivy.core.window import Window
 
-# Window.size = (560, 910)
-# Config.set('kivy', 'keyboard_mode', 'systemanddock')
+Window.size = (560, 810)
+Config.set('kivy', 'keyboard_mode', 'systemanddock')
 
 import matplotlib.pyplot as plt
 
